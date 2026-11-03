@@ -1,0 +1,7 @@
+db.sqlite3
+.env
+__pycache__/
+*.py[cod]
+.DS_Store
+config/settings_backup.txt
+config/settings_local_backup.py

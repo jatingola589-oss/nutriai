@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | NutriAI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px 15px;
+            background: #081510;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: #10251b;
+            padding: 28px;
+            border-radius: 18px;
+            border: 1px solid #28513b;
+        }
+
+        h1 {
+            color: #7bea9e;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #a9c5b3;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #7bea9e;
+            margin-top: 28px;
+        }
+
+        label {
+            display: block;
+            margin: 16px 0 7px;
+            color: #d5e8dc;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 13px;
+            border-radius: 9px;
+            border: 1px solid #345b45;
+            background: #091a11;
+            color: white;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid #55ce80;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            background: #55ce80;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #07150d;
+        }
+
+        a {
+            color: #7bea9e;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <h1>My Profile</h1>
+    <p class="subtitle">Tell us about yourself to personalize your experience.</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <h3>Personal Information</h3>
+
+        <label>Full Name</label>
+        {{ form.full_name }}
+
+        <label>Gender</label>
+        {{ form.gender }}
+
+        <label>Date of Birth</label>
+        {{ form.date_of_birth }}
+
+        <h3>Body Information</h3>
+
+        <label>Height (cm)</label>
+        {{ form.height }}
+
+        <label>Weight (kg)</label>
+        {{ form.weight }}
+
+        <h3>Activity & Lifestyle</h3>
+
+        <label>Activity Level</label>
+        {{ form.activity_level }}
+
+        <h3>Health & Accessibility</h3>
+
+        <label>Disability</label>
+        {{ form.disability }}
+
+        <label>Accessibility Requirements</label>
+        {{ form.accessibility_needs }}
+
+        <label>Health Conditions (Optional)</label>
+        {{ form.health_conditions }}
+
+        <label>Food Allergies (Optional)</label>
+        {{ form.food_allergies }}
+
+        <h3>Food & Health Goals</h3>
+
+        <label>Dietary Preference</label>
+        {{ form.dietary_preference }}
+
+        <label>Health Goal</label>
+        {{ form.health_goal }}
+
+        <button type="submit">Save My Profile</button>
+    </form>
+
+    <p style="text-align:center; margin-top:20px;">
+        <a href="/">Back to Dashboard</a>
+    </p>
+
+</div>
+</body>
+</html>0
+

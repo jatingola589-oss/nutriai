@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NutriAI Daily Tracker</title>
+<style>
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #07130f;
+    color: #f1f7f3;
+}
+.container { max-width: 650px; margin: auto; }
+h1 { color: #70e0a0; }
+.subtitle, #date { color: #a9bdb1; }
+.card {
+    background: #10251c;
+    border: 1px solid #244b37;
+    border-radius: 15px;
+    padding: 18px;
+    margin: 16px 0;
+}
+.habit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid #294435;
+}
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #58d68d;
+}
+.progress-bg {
+    background: #294435;
+    height: 12px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+#progressBar {
+    width: 0%;
+    height: 100%;
+    background: #58d68d;
+}
+button {
+    background: #58d68d;
+    color: #07130f;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 18px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🌿 NutriAI Daily Tracker</h1>
+<p class="subtitle">Small healthy habits, one day at a time.</p>
+<p id="date"></p>
+
+<form method="POST">
+{% csrf_token %}
+
+<div class="card">
+<h3>Today's Progress</h3>
+<h2 id="progressText">0% Completed</h2>
+<div class="progress-bg">
+<div id="progressBar"></div>
+</div>
+</div>
+
+<div class="card">
+<h3>✅ Daily Habits</h3>
+
+<label class="habit">
+<input type="checkbox" name="breakfast" {% if tracker.breakfast %}checked{% endif %}>
+Eat breakfast
+</label>
+
+<label class="habit">
+<input type="checkbox" name="lunch" {% if tracker.lunch %}checked{% endif %}>
+Eat lunch
+</label>
+
+<label class="habit">
+<input type="checkbox" name="dinner" {% if tracker.dinner %}checked{% endif %}>
+Eat dinner
+</label>
+
+<label class="habit">
+<input type="checkbox" name="water" {% if tracker.water %}checked{% endif %}>
+Drink water regularly
+</label>
+
+<label class="habit">
+<input type="checkbox" name="fruits" {% if tracker.fruits %}checked{% endif %}>
+Eat fruits or vegetables
+</label>
+
+<label class="habit">
+<input type="checkbox" name="activity" {% if tracker.activity %}checked{% endif %}>
+Do comfortable physical activity
+</label>
+
+<label class="habit">
+<input type="checkbox" name="relaxation" {% if tracker.relaxation %}checked{% endif %}>
+Take time to relax
+</label>
+
+<label class="habit">
+<input type="checkbox" name="sleep" {% if tracker.sleep %}checked{% endif %}>
+Follow a healthy sleep routine
+</label>
+
+<button type="submit">💾 Save Progress</button>
+</div>
+</form>
+<div class="card">
+<h3>🌟 Keep Going!</h3>
+<p id="message">Start with one healthy habit.</p>
+</div>
+
+</div>
+
+<script>
+const boxes = document.querySelectorAll('input[type="checkbox"]');
+
+document.getElementById('date').textContent =
+    "Date: " + new Date().toLocaleDateString();
+
+function updateProgress() {
+    const total = boxes.length;
+    const completed = [...boxes].filter(box => box.checked).length;
+    const percent = Math.round((completed / total) * 100);
+
+    document.getElementById('progressText').textContent =
+        percent + "% Completed";
+
+    document.getElementById('progressBar').style.width =
+        percent + "%";
+
+    document.getElementById('message').textContent =
+        percent === 100 ? "Amazing! You completed all habits!" :
+        percent >= 50 ? "Great progress! Keep it up!" :
+        "Every small step counts. Keep going!";
+}
+
+boxes.forEach(box => box.addEventListener('change', updateProgress));
+updateProgress();
+</script>
+
+</body>
+</html>
+0
+
