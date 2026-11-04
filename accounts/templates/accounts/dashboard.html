@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard | AI Diet Consultant</title>
+<title>Dashboard | NutriAI</title>
+
 <style>
 :root {
   --bg:#09130f;
@@ -14,13 +15,30 @@
   --border:#263c2e;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif
+}
 .app{display:flex;min-height:100vh}
-.sidebar{width:245px;background:#0d1b14;border-right:1px solid var(--border);padding:25px}
+.sidebar{
+  width:245px;
+  background:#0d1b14;
+  border-right:1px solid var(--border);
+  padding:25px
+}
 .brand{font-size:21px;font-weight:bold;margin-bottom:30px}
 .brand span{color:var(--green)}
 .nav-label{font-size:11px;color:var(--muted);margin:20px 0 10px}
-.nav a{display:block;text-decoration:none;color:var(--text);padding:13px;border-radius:9px;margin:5px 0}
+.nav a{
+  display:block;
+  text-decoration:none;
+  color:var(--text);
+  padding:13px;
+  border-radius:9px;
+  margin:5px 0
+}
 .nav a.active,.nav a:hover{background:#20382a;color:var(--green)}
 .main{flex:1;padding:30px;min-width:0}
 .top{display:flex;justify-content:space-between;align-items:center}
@@ -29,7 +47,13 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-seri
 h1{font-size:30px;margin:9px 0}
 .muted{color:var(--muted);line-height:1.6}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:25px 0}
-.card{background:var(--panel);border:1px solid var(--border);padding:22px;border-radius:15px;margin-bottom:16px}
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:22px;
+  border-radius:15px;
+  margin-bottom:16px
+}
 .card small{color:var(--muted)}
 .value{font-size:25px;font-weight:bold;margin-top:12px}
 .green{color:var(--green)}
@@ -37,110 +61,163 @@ h1{font-size:30px;margin:9px 0}
 .item{padding:15px 0;border-bottom:1px solid var(--border)}
 .item:last-child{border:0}
 .emoji{font-size:25px}
-.action{display:inline-block;background:var(--green);color:#09130f;padding:11px 17px;border-radius:8px;text-decoration:none;font-weight:bold}
+.action{
+  display:inline-block;
+  background:var(--green);
+  color:#09130f;
+  padding:11px 17px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold
+}
+.profile-info p{margin:12px 0}
 @media(max-width:850px){
-.sidebar{width:190px}
-.main{padding:20px}
-.content{grid-template-columns:1fr}
+  .sidebar{width:190px}
+  .main{padding:20px}
+  .content{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-.app{display:block}
-.sidebar{width:100%;padding:15px}
-.brand{margin:5px 5px 15px}
-.nav{display:flex;overflow-x:auto;gap:5px}
-.nav-label{display:none}
-.nav a{white-space:nowrap;padding:10px}
-.main{padding:18px}
-.grid{grid-template-columns:1fr 1fr;gap:9px}
-.card{padding:14px}
-.value{font-size:21px}
-h1{font-size:25px}
+  .app{display:block}
+  .sidebar{width:100%;padding:15px}
+  .brand{margin:5px 5px 15px}
+  .nav{display:flex;overflow-x:auto;gap:5px}
+  .nav-label{display:none}
+  .nav a{white-space:nowrap;padding:10px}
+  .main{padding:18px}
+  .grid{grid-template-columns:1fr 1fr;gap:9px}
+  .card{padding:14px}
+  .value{font-size:21px}
+  h1{font-size:25px}
 }
 </style>
 </head>
+
 <body>
 <div class="app">
-<aside class="sidebar">
-<div class="brand">✦ AI Diet <span>Consultant</span></div>
-<div class="nav-label">MAIN MENU</div>
-<nav class="nav">
-<a href="/" class="active">⌂ Dashboard</a>
-<a href="{% url 'diet' %}">🥗 My Diet</a>
-<a href="{% url 'exercise' %}">🏋️ Exercise Plan</a>
-<a href="{% url 'recipes' %}">🍎 Recipes</a>0
 
-<a href="{% url 'tracker' %}">📊 Daily Tracker</a>
-<div class="nav-label">PERSONAL</div>
-<a href="#">✦ AI Assistant</a>
-<a href="{% url 'profile' %}">👤 My Profile</a>
-<a href="#">⚙ Settings</a>
-<a href="{% url 'logout' %}">↪ Logout</a>
-</nav>
+<aside class="sidebar">
+  <div class="brand">✦ AI Diet <span>Consultant</span></div>
+
+  <div class="nav-label">MAIN MENU</div>
+
+  <nav class="nav">
+    <a href="/" class="active">⌂ Dashboard</a>
+    <a href="{% url 'diet' %}">🥗 My Diet</a>
+    <a href="{% url 'exercise' %}">🏋️ Exercise Plan</a>
+    <a href="{% url 'recipes' %}">🍎 Recipes</a>
+    <a href="{% url 'tracker' %}">📊 Daily Tracker</a>
+
+    <div class="nav-label">PERSONAL</div>
+    <a href="{% url 'profile' %}">👤 My Profile</a>
+    <a href="{% url 'logout' %}">↪ Logout</a>
+  </nav>
 </aside>
 
 <main class="main">
-<div class="top">
-<div>
-<small>YOUR WELLNESS SPACE</small>
-<h1>Welcome back, {{ request.user.username }}!</h1>
 
-{% if profile %}
-<div class="profile-info">
-    <h2>👤 Your Profile</h2>
+  <div class="top">
+    <div>
+      <small>YOUR WELLNESS SPACE</small>
 
-    <p><strong>Name:</strong> {{ profile.full_name }}</p>
-    <p><strong>Age:</strong> {{ profile.age }} years</p>
-    <p><strong>Gender:</strong> {{ profile.gender }}</p>
-    <p><strong>Height:</strong> {{ profile.height }} cm</p>
-    <p><strong>Weight:</strong> {{ profile.weight }} kg</p>
-    <p><strong>Health Goal:</strong> {{ profile.health_goal }}</p>
-</div>
-{% else %}
-<p>Please complete your profile first.</p>
-<a href="{% url 'profile' %}">Complete Profile</a>
-{% endif %}0
-<div class="muted">Small healthy habits make a big difference.</div>
-</div>
-<div class="avatar">👤</div>
-</div>
+      {% if profile and profile.full_name %}
+        <h1>Welcome, {{ profile.full_name }}!</h1>
+      {% else %}
+        <h1>Welcome, {{ request.user.username }}!</h1>
+      {% endif %}
 
-<div class="grid">
-<div class="card"><small>DAILY WELLNESS</small><div class="value green">Your Journey</div></div>
-<div class="card"><small>MEAL PLAN</small><div class="value">Healthy Eating</div></div>
-<div class="card"><small>ACTIVITY</small><div class="value">Keep Moving</div></div>
-</div>
+      <div class="muted">
+        Small healthy habits make a big difference.
+      </div>
+    </div>
 
-<div class="content">
-<section class="card">
-<h3>🥑 Today's meal inspiration</h3>
-<div class="item"><div class="emoji">🌅</div><b>Breakfast</b><p class="muted">A balanced and nourishing start.</p></div>
-<div class="item"><div class="emoji">☀️</div><b>Lunch</b><p class="muted">Enjoy a variety of food groups.</p></div>
-<div class="item"><div class="emoji">🍎</div><b>Snack</b><p class="muted">Choose a satisfying snack.</p></div>
-<div class="item"><div class="emoji">🌙</div><b>Dinner</b><p class="muted">Enjoy a balanced evening meal.</p></div>
-<a href="#" class="action">Explore meals →</a>
-</section>
+    <div class="avatar">👤</div>
+  </div>
 
-<section>
-<div class="card">
-<h3>💧 Daily hydration</h3>
-<div class="value green">Stay hydrated</div>
-<p class="muted">Drink water regularly according to your needs.</p>
-</div>
-<div class="card">
-<h3>🏃 Movement</h3>
-<div class="item">🚶 Gentle movement</div>
-<div class="item">🧘 Stretching, if comfortable</div>
-</div>
-</section>
-</div>
+  {% if profile %}
+  <section class="card profile-info">
+    <h2>👤 Your Details</h2>
+    <p><strong>Name:</strong> {{ profile.full_name|default:request.user.username }}</p>
+    <p><strong>Health Goal:</strong> {{ profile.health_goal|default:"Not selected yet" }}</p>
+    <a href="{% url 'profile' %}" class="action">Edit Profile →</a>
+  </section>
+  {% else %}
+  <section class="card">
+    <h2>Complete Your Profile</h2>
+    <p class="muted">Add your name and health goal to get started.</p>
+    <a href="{% url 'profile' %}" class="action">Complete Profile →</a>
+  </section>
+  {% endif %}
 
-<p class="muted">Your personal health and wellness space.</p>
+  <div class="grid">
+    <div class="card">
+      <small>DAILY WELLNESS</small>
+      <div class="value green">Your Journey</div>
+    </div>
+
+    <div class="card">
+      <small>MEAL PLAN</small>
+      <div class="value">Healthy Eating</div>
+    </div>
+
+    <div class="card">
+      <small>ACTIVITY</small>
+      <div class="value">Keep Moving</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <section class="card">
+      <h3>🥑 Today's meal inspiration</h3>
+
+      <div class="item">
+        <div class="emoji">🌅</div>
+        <b>Breakfast</b>
+        <p class="muted">A balanced and nourishing start.</p>
+      </div>
+
+      <div class="item">
+        <div class="emoji">☀️</div>
+        <b>Lunch</b>
+        <p class="muted">Enjoy a variety of food groups.</p>
+      </div>
+
+      <div class="item">
+        <div class="emoji">🍎</div>
+        <b>Snack</b>
+        <p class="muted">Choose a satisfying snack.</p>
+      </div>
+
+      <div class="item">
+        <div class="emoji">🌙</div>
+        <b>Dinner</b>
+        <p class="muted">Enjoy a balanced evening meal.</p>
+      </div>
+
+      <a href="{% url 'diet' %}" class="action">Explore meals →</a>
+    </section>
+
+    <section>
+      <div class="card">
+        <h3>💧 Daily hydration</h3>
+        <div class="value green">Stay hydrated</div>
+        <p class="muted">Drink water regularly according to your needs.</p>
+      </div>
+
+      <div class="card">
+        <h3>🏃 Movement</h3>
+        <div class="item">🚶 Gentle movement</div>
+        <div class="item">🧘 Stretching, if comfortable</div>
+      </div>
+    </section>
+
+  </div>
+
+  <p class="muted">Your personal health and wellness space.</p>
+
 </main>
 </div>
 </body>
-</html>0
-
-0
-
+</html>
 0
 
